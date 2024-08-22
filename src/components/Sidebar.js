@@ -1,44 +1,44 @@
 import React from "react";
 import Icon from "./Icon";
+import Action from "./ActionComponent";
 
 export default function Sidebar({ move, rotate }) {
     const handleMove = () => move(10, 0);
-    const handleRotateLeft = () => rotate(-90);
-    const handleRotateRight = () => rotate(90);
+    const handleRotateLeft = () => rotate(-15);
+    const handleRotateRight = () => rotate(15);
     return (
         <div className="w-60 flex-none h-full overflow-y-auto flex flex-col items-start p-2 border-r border-gray-200">
             <div className="font-bold"> {"Events"} </div>
-            <div className="flex flex-row flex-wrap bg-yellow-500 text-white px-2 py-1 my-2 text-sm cursor-pointer">
-                {"When "}
-                <Icon name="flag" size={15} className="text-green-600 mx-2" />
-                {"clicked"}
-            </div>
-            <div className="flex flex-row flex-wrap bg-yellow-500 text-white px-2 py-1 my-2 text-sm cursor-pointer">
+            <Action bgColor="bg-yellow-500">
+                <>
+                    {"When "}
+                    <Icon
+                        name="flag"
+                        size={15}
+                        className="text-green-600 mx-2"
+                    />
+                    {"clicked"}
+                </>
+            </Action>
+            <Action bgColor="bg-yellow-500">
                 {"When this sprite clicked"}
-            </div>
+            </Action>
             <div className="font-bold"> {"Motion"} </div>
-            <div
-                className="flex flex-row flex-wrap bg-blue-500 text-white px-2 py-1 my-2 text-sm cursor-pointer"
-                onClick={handleMove}
-            >
-                {"Move 10 steps "}
-            </div>
-            <div
-                className="flex flex-row flex-wrap bg-blue-500 text-white px-2 py-1 my-2 text-sm cursor-pointer"
-                onClick={handleRotateLeft}
-            >
-                {"Turn "}
-                <Icon name="undo" size={15} className="text-white mx-2" />
-                {"15 degrees"}
-            </div>
-            <div
-                className="flex flex-row flex-wrap bg-blue-500 text-white px-2 py-1 my-2 text-sm cursor-pointer"
-                onClick={handleRotateRight}
-            >
-                {"Turn "}
-                <Icon name="redo" size={15} className="text-white mx-2" />
-                {"15 degrees"}
-            </div>
+            <Action onClick={handleMove}>{"Move 10 steps "}</Action>
+            <Action onClick={handleRotateLeft}>
+                <>
+                    {"Turn "}
+                    <Icon name="undo" size={15} className="text-white mx-2" />
+                    {"15 degrees"}
+                </>
+            </Action>
+            <Action onClick={handleRotateRight}>
+                <>
+                    {"Turn "}
+                    <Icon name="redo" size={15} className="text-white mx-2" />
+                    {"15 degrees"}
+                </>
+            </Action>
         </div>
     );
 }
